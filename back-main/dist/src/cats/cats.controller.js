@@ -25,6 +25,14 @@ let CatsController = class CatsController {
     async getCats() {
         return this.catsService.getCats();
     }
+    async deleteCat(id) {
+        const catId = Number(id);
+        if (isNaN(catId)) {
+            throw new Error(`ID должен быть числом`);
+        }
+        await this.catsService.deleteCat(catId);
+        return { message: `Кот с id ${id} успешно удалён.` };
+    }
 };
 exports.CatsController = CatsController;
 __decorate([
@@ -40,6 +48,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], CatsController.prototype, "getCats", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], CatsController.prototype, "deleteCat", null);
 exports.CatsController = CatsController = __decorate([
     (0, common_1.Controller)('cats'),
     __metadata("design:paramtypes", [cats_service_1.CatsService])

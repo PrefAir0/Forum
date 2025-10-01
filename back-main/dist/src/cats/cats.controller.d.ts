@@ -9,4 +9,7 @@ export declare class CatsController {
         breed: string;
     }): Promise<Cat>;
     getCats(): Promise<Cat[]>;
+    deleteCat(id: string): Promise<{
+        message: string;
+    }>;
 }

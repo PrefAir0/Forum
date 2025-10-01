@@ -22,6 +22,9 @@ let CatsService = class CatsService {
     async getCats() {
         return this.prisma.cat.findMany();
     }
+    async deleteCat(id) {
+        await this.prisma.cat.delete({ where: { id } });
+    }
 };
 exports.CatsService = CatsService;
 exports.CatsService = CatsService = __decorate([

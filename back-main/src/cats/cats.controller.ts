@@ -25,6 +25,16 @@ export class CatsController {
   async getCats(): Promise<Cat[]> {
     return this.catsService.getCats();
   }
+
+  @Delete(':id')
+  async deleteCat(@Param('id') id: string): Promise<{message: string}> {
+    const catId = Number(id);
+    if (isNaN(catId)) {
+      throw new Error(`ID должен быть числом`);
+    }
+    await this.catsService.deleteCat(catId);
+    return { message: `Кот с id ${id} успешно удалён.`};
+  }
   
 }
 

@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { Cat } from '@prisma/client';
 import { PrismaService } from 'prisma/prisma.service';
 
-
   @Injectable()
   export class CatsService {
 
@@ -17,4 +16,9 @@ import { PrismaService } from 'prisma/prisma.service';
   async getCats(): Promise<Cat[]> {
      return this.prisma.cat.findMany();
   }
+
+  async deleteCat(id: number): Promise<void> {
+    await this.prisma.cat.delete({ where: { id } });
+  }
+
 }

@@ -9,4 +9,5 @@ export declare class CatsService {
         breed: string;
     }): Promise<Cat>;
     getCats(): Promise<Cat[]>;
+    deleteCat(id: number): Promise<void>;
 }
