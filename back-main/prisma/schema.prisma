@@ -19,3 +19,9 @@ model Cat {
   age   Int
   breed String
 }
+
+model Messenge {
+  id    Int     @id @default(autoincrement())
+  name  String  
+  send  Int
+}
