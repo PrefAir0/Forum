@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import CatList from "./components/CatList"
 
 function App() {
-  const [count, setCount] = useState(0);
   const [cats, setCats] = useState([]);
   
   useEffect(() => {
@@ -17,9 +17,9 @@ function App() {
 
   return (
     <div>
-      
+      <CatList />
     </div>
   )
 }
 
-export default App
+export default App;
