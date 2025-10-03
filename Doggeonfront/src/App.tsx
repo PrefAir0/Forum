@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import CatList from "./components/CatList"
 import AddCatForm from "./components/AddCatForm"
+
 function App() {
   const [cats, setCats] = useState([]);
   
@@ -20,8 +21,10 @@ function App() {
       <h1>ДУРОВ ВЕРНУЛ СТЕНУ</h1>
       
       <CatList/>
-      <div className="text-write">
       <AddCatForm/>
+      
+      <div className="text-write">
+      
       </div>
     </div>
   )
