@@ -1,30 +1,22 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect } from "react";
+import { $cats, loadCatsFx } from "../store/Catsstore";
 import CatCard from "./CatCard";
-import type {Cat} from "../types/cats";
-import { fetchCats } from "../service/catService";
+import { useUnit } from "effector-react";
 
-const Catlist: React.FC = () => {
-    const [cats, setCats] = useState<Cat[]>([])
+const CatList: React.FC = () => {
+    const cats = useUnit($cats);
 
     useEffect(() => {
-        const getCats = async () => {
-            const data = await fetchCats();
-            setCats(data);
-        };
+        loadCatsFx();
+    }, []);
 
-        getCats();
-
-    }, []) 
-
-    return(
+    return (
         <div>
-            {cats.map((cat) =>
+            {cats.map((cat) => (
                 <CatCard key={cat.id} cat={cat} />
-            )}
+            ))}
         </div>
-    )
-}
+    );
+};
 
-export default Catlist;
-
+export default CatList;
