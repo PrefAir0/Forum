@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { addNewCat } from "../store/Catsstore";
-import { Button, TextField, Box, Alert } from "@mui/material";
+import { Button, TextField, Box, Alert, Paper } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import CheckIcon from '@mui/icons-material/Check';
-import './Addlol.css';
 
 const AddCatForm: React.FC = () => {
   const [name, setName] = useState("");
@@ -14,57 +13,87 @@ const AddCatForm: React.FC = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     addNewCat({ name, age, breed });
-    setMessage(`Successfully added cat: ${name}`);
+    setMessage(`Успешно создано сообщение!`);
     setName("");
     setAge(0);
     setBreed("");
   };
- // Я ЕБАЛ ЭТОТ КОД -o-
-    return (
-        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
-            <TextField
+
+  return (
+    <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+            position: 'fixed',
+            bottom: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '100%',
+            maxWidth: 500,
+            zIndex: 1000,
+            backgroundColor: "#f7f7f7",
+            padding: 3,
+      }}
+    >
+      <Paper
+        sx={{
+            p: 3,
+            borderRadius: 2,
+            boxShadow: 2,
+        }}
+      >
+        <TextField
             variant="outlined"
-                label="Имя"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                fullWidth
-                sx={{ mb: 2, width: 300 }}
-            />
-            {/* <TextField
-                variant="standard"
-                label="Age"
-                value={age}
-                onChange={(e) => setAge(parseInt(e.target.value))}
-                required
-                fullWidth
-                sx={{ mb: 2 }}
-            /> */}
-            <div className="forma">
-                <TextField
-                    variant="outlined" 
-                    label="Сообщение"
-                    value={breed}
-                    onChange={(e) => setBreed(e.target.value)}
-                    required
-                    fullWidth
-                    sx={{mb: 3}}
-                />
-                <Button 
-                    type="submit" 
-                    variant="contained" 
-                    color="primary" 
-                    fullWidth
-                    sx={{ml: 0, p: 2,}}
-                    endIcon={<SendIcon/>}>
-                    Отправить на стену
-                </Button>
-            </div>
-            {message && <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-      Вы успешно добавили пост!</Alert>}
-        </Box>
-        
-    );
+            label="Имя"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            fullWidth
+            sx={{ mb: 3 }}
+        />
+
+        <TextField
+            variant="outlined"
+            label="Сообщение"
+            value={breed}
+            onChange={(e) => setBreed(e.target.value)}
+            required
+            fullWidth
+            sx={{ mb: 3 }}
+        />
+
+        <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            sx={{
+                width: "100%",
+                height: 50,
+                borderRadius: 1,
+                textTransform: "none",
+            }}
+            endIcon={<SendIcon />}
+            >
+            Отправить на стену
+            </Button>
+
+        {message && (
+          <Alert
+            icon={<CheckIcon fontSize="inherit" />}
+            severity="success"
+            sx={{
+              mt: 2,
+              borderRadius: 1,
+              backgroundColor: "#d4edda",
+              color: "#155724",
+            }}
+          >
+            {message}
+          </Alert>
+        )}
+      </Paper>
+    </Box>  
+  );
 };
 
 export default AddCatForm;

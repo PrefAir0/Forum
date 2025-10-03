@@ -19,13 +19,8 @@ function App() {
   return (
     <div>
       <h1>ДУРОВ ВЕРНУЛ СТЕНУ</h1>
-      
       <CatList/>
       <AddCatForm/>
-      
-      <div className="text-write">
-      
-      </div>
     </div>
   )
 }
